@@ -1,0 +1,9 @@
+version: "1"
+services:
+    ui:
+      build: 
+        context: ./dashboard
+        dockerfile: Dockerfile
+      container_name: dashboard
+      ports:
+      - "9000:3000"
