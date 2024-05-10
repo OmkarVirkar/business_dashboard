@@ -1,4 +1,3 @@
-version: "1"
 services:
     ui:
       build: 
@@ -6,4 +5,19 @@ services:
         dockerfile: Dockerfile
       container_name: dashboard
       ports:
-      - "9000:3000"
+        - "9000:3000"
+
+    mongodb:
+      ports:
+           - '9003:27017'
+      container_name: mongo_container
+      restart: always
+      logging:
+          options:
+              max-size: 1g
+      environment:
+          - MONGO_INITDB_ROOT_USERNAME=admin
+          - MONGO_INITDB_ROOT_PASSWORD=admin
+      image: mongo
+      volumes:
+            - ./data:/data/db
