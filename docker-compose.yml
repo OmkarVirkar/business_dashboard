@@ -21,3 +21,13 @@ services:
       image: mongo
       volumes:
             - ./data:/data/db
+
+    backend:
+        build:
+            context: ./backend
+            dockerfile: Dockerfile
+        container_name: microservices_backend
+        ports:
+            - 9002:3000
+        depends_on:
+            - mongodb

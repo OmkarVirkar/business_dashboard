@@ -1,0 +1,23 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Microservices backend for business dashboard",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OmkarVirkar/business_dashboard.git"
+  },
+  "author": "Omkar Virkar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OmkarVirkar/business_dashboard/issues"
+  },
+  "homepage": "https://github.com/OmkarVirkar/business_dashboard#readme",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
