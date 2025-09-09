@@ -25,7 +25,7 @@ export default function TextInput({
       autoComplete={autoComplete}
       required={required || false}
       className={`text-3xl font-bold text-slate-900 dark:text-white ${
-        className || ''
+        className || ""
       }`}
       placeholder={placeholder}
       defaultValue={value}

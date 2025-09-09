@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import LoginPageContainer from '@/Containers/Login/login.Container';
+import LoginPageContainer from "@/Containers/Login/login.Container";
 
 export default function LoginPage() {
   return (

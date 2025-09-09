@@ -1,14 +1,14 @@
-import '@testing-library/jest-dom';
-import React from 'react';
-import { render, screen, cleanup, fireEvent } from '@testing-library/react';
-import LoginTab from '../login';
+import "@testing-library/jest-dom";
+import React from "react";
+import { render, screen, cleanup, fireEvent } from "@testing-library/react";
+import LoginTab from "../login";
 
-describe('LoginTab UI component render check', () => {
+describe("LoginTab UI component render check", () => {
   afterEach(() => {
     cleanup();
   });
 
-  it('renders login component', () => {
+  it("renders login component", () => {
     render(
       <LoginTab
         disableSignIn={false}
@@ -16,14 +16,14 @@ describe('LoginTab UI component render check', () => {
         rememberMeEnabled={false}
         setRememberMeEnabled={jest.fn()}
         setSignInDisable={jest.fn()}
-        emailId={''}
-        password={''}
-      />,
+        emailId={""}
+        password={""}
+      />
     );
-    expect(screen.getByTestId('login-page')).toBeInTheDocument();
+    expect(screen.getByTestId("login-page")).toBeInTheDocument();
   });
 
-  it('renders Sign in button', () => {
+  it("renders Sign in button", () => {
     render(
       <LoginTab
         disableSignIn={false}
@@ -31,16 +31,16 @@ describe('LoginTab UI component render check', () => {
         rememberMeEnabled={false}
         setRememberMeEnabled={jest.fn()}
         setSignInDisable={jest.fn()}
-        emailId={''}
-        password={''}
-      />,
+        emailId={""}
+        password={""}
+      />
     );
     expect(
-      screen.getByRole('button', { name: /Sign in/i }),
+      screen.getByRole("button", { name: /Sign in/i })
     ).toBeInTheDocument();
   });
 
-  it('calls loginFunction when Sign in button is clicked', () => {
+  it("calls loginFunction when Sign in button is clicked", () => {
     const mockLogin = jest.fn();
     render(
       <LoginTab
@@ -49,15 +49,15 @@ describe('LoginTab UI component render check', () => {
         rememberMeEnabled={false}
         setRememberMeEnabled={jest.fn()}
         setSignInDisable={jest.fn()}
-        emailId={''}
-        password={''}
-      />,
+        emailId={""}
+        password={""}
+      />
     );
-    fireEvent.click(screen.getByRole('button', { name: /Sign in/i }));
+    fireEvent.click(screen.getByRole("button", { name: /Sign in/i }));
     expect(mockLogin).toHaveBeenCalledTimes(1);
   });
 
-  it('renders Remember me checkbox', () => {
+  it("renders Remember me checkbox", () => {
     render(
       <LoginTab
         disableSignIn={false}
@@ -65,14 +65,14 @@ describe('LoginTab UI component render check', () => {
         rememberMeEnabled={false}
         setRememberMeEnabled={jest.fn()}
         setSignInDisable={jest.fn()}
-        emailId={''}
-        password={''}
-      />,
+        emailId={""}
+        password={""}
+      />
     );
     expect(screen.getByLabelText(/Remember me/i)).toBeInTheDocument();
   });
 
-  it('renders Forgot your password link', () => {
+  it("renders Forgot your password link", () => {
     render(
       <LoginTab
         disableSignIn={false}
@@ -80,14 +80,14 @@ describe('LoginTab UI component render check', () => {
         rememberMeEnabled={false}
         setRememberMeEnabled={jest.fn()}
         setSignInDisable={jest.fn()}
-        emailId={''}
-        password={''}
-      />,
+        emailId={""}
+        password={""}
+      />
     );
     expect(screen.getByText(/Forgot your password/i)).toBeInTheDocument();
   });
 
-  it('renders email and password inputs with default values', () => {
+  it("renders email and password inputs with default values", () => {
     render(
       <LoginTab
         disableSignIn={false}
@@ -95,17 +95,17 @@ describe('LoginTab UI component render check', () => {
         rememberMeEnabled={false}
         setRememberMeEnabled={jest.fn()}
         setSignInDisable={jest.fn()}
-        emailId={'admin@savor.com'}
-        password={'password'}
-      />,
+        emailId={"admin@savor.com"}
+        password={"password"}
+      />
     );
-    expect(screen.getByPlaceholderText(/Email address/i)).toHaveValue(
-      'admin@savor.com',
+    expect(screen.getByPlaceholderText(/Email/i)).toHaveValue(
+      "admin@savor.com"
     );
-    expect(screen.getByPlaceholderText(/Password/i)).toHaveValue('password');
+    expect(screen.getByPlaceholderText(/Password/i)).toHaveValue("password");
   });
 
-  it('Sign in button is not disabled', () => {
+  it("Sign in button is not disabled", () => {
     render(
       <LoginTab
         disableSignIn={false}
@@ -113,14 +113,14 @@ describe('LoginTab UI component render check', () => {
         rememberMeEnabled={false}
         setRememberMeEnabled={jest.fn()}
         setSignInDisable={jest.fn()}
-        emailId={''}
-        password={''}
-      />,
+        emailId={""}
+        password={""}
+      />
     );
-    expect(screen.getByRole('button', { name: /Sign in/i })).not.toBeDisabled();
+    expect(screen.getByRole("button", { name: /Sign in/i })).not.toBeDisabled();
   });
 
-  it('Sign in button is disabled', () => {
+  it("Sign in button is disabled", () => {
     render(
       <LoginTab
         disableSignIn={true}
@@ -128,16 +128,16 @@ describe('LoginTab UI component render check', () => {
         rememberMeEnabled={false}
         setRememberMeEnabled={jest.fn()}
         setSignInDisable={jest.fn()}
-        emailId={''}
-        password={''}
-      />,
+        emailId={""}
+        password={""}
+      />
     );
-    expect(screen.getByRole('button', { name: /Sign in/i })).toBeDisabled();
+    expect(screen.getByRole("button", { name: /Sign in/i })).toBeDisabled();
   });
 
   // Additional tests
 
-  it('toggles Remember me checkbox', () => {
+  it("toggles Remember me checkbox", () => {
     const setRememberMeEnabled = jest.fn();
     render(
       <LoginTab
@@ -146,15 +146,15 @@ describe('LoginTab UI component render check', () => {
         rememberMeEnabled={false}
         setRememberMeEnabled={setRememberMeEnabled}
         setSignInDisable={jest.fn()}
-        emailId={''}
-        password={''}
-      />,
+        emailId={""}
+        password={""}
+      />
     );
     fireEvent.click(screen.getByLabelText(/Remember me/i));
     expect(setRememberMeEnabled).toHaveBeenCalledWith(true);
   });
 
-  it('does not toggle Remember me checkbox when disabled', () => {
+  it("does not toggle Remember me checkbox when disabled", () => {
     const setRememberMeEnabled = jest.fn();
     render(
       <LoginTab
@@ -163,15 +163,15 @@ describe('LoginTab UI component render check', () => {
         rememberMeEnabled={false}
         setSignInDisable={jest.fn()}
         setRememberMeEnabled={setRememberMeEnabled}
-        emailId={''}
-        password={''}
-      />,
+        emailId={""}
+        password={""}
+      />
     );
     fireEvent.click(screen.getByLabelText(/Remember me/i));
     expect(setRememberMeEnabled).not.toHaveBeenCalled();
   });
 
-  it('renders with empty email and password', () => {
+  it("renders with empty email and password", () => {
     render(
       <LoginTab
         disableSignIn={false}
@@ -179,15 +179,15 @@ describe('LoginTab UI component render check', () => {
         rememberMeEnabled={false}
         setRememberMeEnabled={jest.fn()}
         setSignInDisable={jest.fn()}
-        emailId={''}
-        password={''}
-      />,
+        emailId={""}
+        password={""}
+      />
     );
-    expect(screen.getByPlaceholderText(/Email address/i)).toHaveValue('');
-    expect(screen.getByPlaceholderText(/Password/i)).toHaveValue('');
+    expect(screen.getByPlaceholderText(/Email/i)).toHaveValue("");
+    expect(screen.getByPlaceholderText(/Password/i)).toHaveValue("");
   });
 
-  it('renders with custom props', () => {
+  it("renders with custom props", () => {
     render(
       <LoginTab
         disableSignIn={false}
@@ -195,18 +195,18 @@ describe('LoginTab UI component render check', () => {
         rememberMeEnabled={true}
         setRememberMeEnabled={jest.fn()}
         setSignInDisable={jest.fn()}
-        emailId={'user@example.com'}
-        password={'123456'}
-      />,
+        emailId={"user@example.com"}
+        password={"123456"}
+      />
     );
-    expect(screen.getByPlaceholderText(/Email address/i)).toHaveValue(
-      'user@example.com',
+    expect(screen.getByPlaceholderText(/Email/i)).toHaveValue(
+      "user@example.com"
     );
-    expect(screen.getByPlaceholderText(/Password/i)).toHaveValue('123456');
+    expect(screen.getByPlaceholderText(/Password/i)).toHaveValue("123456");
     expect(screen.getByLabelText(/Remember me/i)).toBeChecked();
   });
 
-  it('calls loginFunction when Sign in button is clicked', () => {
+  it("calls loginFunction when Sign in button is clicked", () => {
     const mockLogin = jest.fn();
     render(
       <LoginTab
@@ -215,15 +215,15 @@ describe('LoginTab UI component render check', () => {
         rememberMeEnabled={false}
         setRememberMeEnabled={jest.fn()}
         setSignInDisable={jest.fn()}
-        emailId={''}
-        password={''}
-      />,
+        emailId={""}
+        password={""}
+      />
     );
-    fireEvent.click(screen.getByRole('button', { name: /Sign in/i }));
+    fireEvent.click(screen.getByRole("button", { name: /Sign in/i }));
     expect(mockLogin).toHaveBeenCalledTimes(1);
   });
 
-  it('renders Remember me checkbox', () => {
+  it("renders Remember me checkbox", () => {
     render(
       <LoginTab
         disableSignIn={false}
@@ -231,14 +231,14 @@ describe('LoginTab UI component render check', () => {
         rememberMeEnabled={false}
         setRememberMeEnabled={jest.fn()}
         setSignInDisable={jest.fn()}
-        emailId={''}
-        password={''}
-      />,
+        emailId={""}
+        password={""}
+      />
     );
     expect(screen.getByLabelText(/Remember me/i)).toBeInTheDocument();
   });
 
-  it('renders Forgot your password link', () => {
+  it("renders Forgot your password link", () => {
     render(
       <LoginTab
         disableSignIn={false}
@@ -246,14 +246,14 @@ describe('LoginTab UI component render check', () => {
         rememberMeEnabled={false}
         setRememberMeEnabled={jest.fn()}
         setSignInDisable={jest.fn()}
-        emailId={''}
-        password={''}
-      />,
+        emailId={""}
+        password={""}
+      />
     );
     expect(screen.getByText(/Forgot your password/i)).toBeInTheDocument();
   });
 
-  it('renders email and password inputs with default values', () => {
+  it("renders email and password inputs with default values", () => {
     render(
       <LoginTab
         disableSignIn={false}
@@ -261,16 +261,16 @@ describe('LoginTab UI component render check', () => {
         rememberMeEnabled={false}
         setRememberMeEnabled={jest.fn()}
         setSignInDisable={jest.fn()}
-        emailId={'admin@savor.com'}
-        password={'password'}
-      />,
+        emailId={"admin@savor.com"}
+        password={"password"}
+      />
     );
-    expect(screen.getByPlaceholderText(/Email address/i)).toHaveValue(
-      'admin@savor.com',
+    expect(screen.getByPlaceholderText(/Email/i)).toHaveValue(
+      "admin@savor.com"
     );
-    expect(screen.getByPlaceholderText(/Password/i)).toHaveValue('password');
+    expect(screen.getByPlaceholderText(/Password/i)).toHaveValue("password");
   });
-  it('Sign in button is not disabled', () => {
+  it("Sign in button is not disabled", () => {
     render(
       <LoginTab
         disableSignIn={false}
@@ -278,14 +278,14 @@ describe('LoginTab UI component render check', () => {
         rememberMeEnabled={false}
         setRememberMeEnabled={jest.fn()}
         setSignInDisable={jest.fn()}
-        emailId={''}
-        password={''}
-      />,
+        emailId={""}
+        password={""}
+      />
     );
-    expect(screen.getByRole('button', { name: /Sign in/i })).not.toBeDisabled();
+    expect(screen.getByRole("button", { name: /Sign in/i })).not.toBeDisabled();
   });
 
-  it('Sign in button is disabled', () => {
+  it("Sign in button is disabled", () => {
     render(
       <LoginTab
         disableSignIn={true}
@@ -293,11 +293,11 @@ describe('LoginTab UI component render check', () => {
         rememberMeEnabled={false}
         setRememberMeEnabled={jest.fn()}
         setSignInDisable={jest.fn()}
-        emailId={''}
-        password={''}
-      />,
+        emailId={""}
+        password={""}
+      />
     );
-    expect(screen.getByRole('button', { name: /Sign in/i })).toBeDisabled();
+    expect(screen.getByRole("button", { name: /Sign in/i })).toBeDisabled();
   });
 });
 
