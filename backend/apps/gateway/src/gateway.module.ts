@@ -10,10 +10,10 @@ import { IntrospectAndCompose } from '@apollo/gateway';
       driver: ApolloGatewayDriver,
       gateway: {
         supergraphSdl: new IntrospectAndCompose({
-          subgraphs: []
-        })
-      }
-    })
+          subgraphs: [],
+        }),
+      },
+    }),
   ],
   controllers: [],
   providers: [GatewayService],
