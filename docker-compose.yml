@@ -1,33 +1,37 @@
 services:
-    ui:
-      build: 
-        context: ./dashboard
-        dockerfile: Dockerfile
-      container_name: dashboard
-      ports:
-        - "9000:3000"
+  ui:
+    build:
+      context: ./dashboard
+      dockerfile: Dockerfile
+    container_name: dashboard
+    ports:
+      - "9000:3000"
 
-    mongodb:
-      ports:
-           - '9003:27017'
-      container_name: mongo_container
-      restart: always
-      logging:
-          options:
-              max-size: 1g
-      environment:
-          - MONGO_INITDB_ROOT_USERNAME=admin
-          - MONGO_INITDB_ROOT_PASSWORD=admin
-      image: mongo
-      volumes:
-            - ./data:/data/db
+  mongodb:
+    ports:
+      - "9003:27017"
+    container_name: mongo_container
+    restart: always
+    logging:
+      options:
+        max-size: 1g
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin
+    image: mongo
+    volumes:
+      - ./data:/data/db
 
-    backend:
-        build:
-            context: ./backend
-            dockerfile: Dockerfile
-        container_name: microservices_backend
-        ports:
-            - 9002:3000
-        depends_on:
-            - mongodb
+  auth:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+      target: development
+    container_name: auth_service
+    command: npm run start:dev auth
+    ports:
+      - 9002:3001
+    depends_on:
+      - mongodb
+    volumes:
+      - .:/usr/src/app
