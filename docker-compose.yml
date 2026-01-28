@@ -24,7 +24,7 @@ services:
 
   auth:
     build:
-      context: ./backend
+      context: ./backend/apps/auth
       dockerfile: Dockerfile
       target: development
     container_name: auth_service
@@ -35,3 +35,5 @@ services:
       - mongodb
     volumes:
       - .:/usr/src/app
+    env_file:
+      - ./backend/apps/auth/.env

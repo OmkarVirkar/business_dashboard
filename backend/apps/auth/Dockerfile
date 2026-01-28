@@ -2,12 +2,9 @@ FROM node:20.12.2-alpine3.19 as development
 
 WORKDIR /usr/src/app
 
-COPY package.json ./
-COPY package-lock.json ./
+COPY . .
 
 RUN npm install
-
-COPY . .
 
 RUN npm run build
 
@@ -18,8 +15,8 @@ ENV NODE_ENV=${NODE_ENV}
 
 WORKDIR /usr/src/app
 
-COPY package.json ./
-COPY package-lock.json ./
+COPY ./apps/auth/package.json ./
+COPY ./apps/auth/package-lock.json ./
 
 RUN npm install --production
 
